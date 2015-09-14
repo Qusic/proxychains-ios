@@ -1,0 +1,3 @@
+[submodule "proxychains"]
+	path = proxychains
+	url = git@github.com:rofl0r/proxychains-ng.git
