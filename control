@@ -1,12 +1,11 @@
 Package: me.qusic.proxychains
-Name: ProxyChains
-Version: 0.0.1
-Description: An awesome MobileSubstrate tweak!
-Section: Tweaks
-Depends: mobilesubstrate
+Name: proxychains
+Version: 4.10
+Description: Redirect TCP connections through SOCKS4a/5 or HTTP proxies
+Section: Networking
 Priority: optional
 Architecture: iphoneos-arm
 Author: Qusic <hi@qusic.me>
 Maintainer: Qusic <hi@qusic.me>
 Sponsor: Qusic <hi@qusic.me>
-Tag: purpose::extension
+Tag: purpose::console, role::hacker
