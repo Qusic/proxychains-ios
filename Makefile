@@ -11,7 +11,7 @@ export ARCHS = armv7 armv7s arm64
 export TARGET_IPHONEOS_DEPLOYMENT_VERSION = 3.0
 export TARGET_IPHONEOS_DEPLOYMENT_VERSION_armv7s = 6.0
 export TARGET_IPHONEOS_DEPLOYMENT_VERSION_arm64 = 7.0
-export ADDITIONAL_CFLAGS = -D_GNU_SOURCE -DSUPER_SECURE -DIS_MAC=1 -DLIB_DIR=\"/usr/lib\" -DSYSCONFDIR=\"/etc\" -DDLL_NAME=\"libproxychains4.dylib\"
+export ADDITIONAL_CFLAGS = -D_GNU_SOURCE -DSUPER_SECURE -DIS_MAC=1 -Ds6_addr16=__u6_addr.__u6_addr16 -Ds6_addr32=__u6_addr.__u6_addr32 -DLIB_DIR=\"/usr/lib\" -DSYSCONFDIR=\"/etc\" -DDLL_NAME=\"libproxychains4.dylib\"
 export GO_EASY_ON_ME = 1
 
 include theos/makefiles/common.mk
@@ -19,7 +19,7 @@ include $(THEOS_MAKE_PATH)/library.mk
 include $(THEOS_MAKE_PATH)/tool.mk
 
 before-all::
-	make -C proxychains src/version.h
+	$(ECHO_NOTHING)make -C proxychains src/version.h$(ECHO_END)
 
 internal-stage::
 	$(ECHO_NOTHING)etc="$(THEOS_STAGING_DIR)/etc"; mkdir -p "$$etc"; cp proxychains/src/proxychains.conf "$$etc"$(ECHO_END)
