@@ -5,7 +5,7 @@ __attribute__((constructor))
 static void constructor(void) {
     void *proxychains = dlopen(LIB_DIR "/" DLL_NAME, RTLD_LAZY | RTLD_LOCAL | RTLD_FIRST);
 #define _hook(handle, symbol) MSHookFunction(dlsym(handle, #symbol), dlsym(proxychains, #symbol), (void **)dlsym(proxychains, "true_" #symbol))
-#define hook(handle) \
+#define hook(handle) ({ \
     _hook(handle, connect); \
     _hook(handle, sendto); \
     _hook(handle, gethostbyname); \
@@ -13,6 +13,7 @@ static void constructor(void) {
     _hook(handle, freeaddrinfo); \
     _hook(handle, gethostbyaddr); \
     _hook(handle, getnameinfo); \
-    _hook(handle, close);
+    _hook(handle, close); \
+})
     hook(RTLD_DEFAULT);
 }
